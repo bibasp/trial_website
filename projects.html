@@ -3,10 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infrastructure Projects - Bibas Pokhrel</title>
+    <title>Projects - Nepal Infrastructure</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /* View toggle styles */
+        .view-toggle {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .view-button {
+            padding: 8px 16px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-button.active {
+            background-color: #4a90e2;
+            color: white;
+            border-color: #3a7bc8;
+        }
+
+        .view-button:hover:not(.active) {
+            background-color: #e9e9e9;
+        }
+
+        /* Project card styles (copied from index.html) */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card.featured {
+            border-left: 4px solid #4a90e2;
+        }
+        
+        .project-card .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(74, 144, 226, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-header {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .project-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .project-content {
+            padding: 15px;
+        }
+        
+        .project-description {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #666;
+        }
+        
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .project-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 2px;
+        }
+        
+        .meta-value {
+            color: #777;
+        }
+        
+        .project-footer {
+            padding: 15px;
+            border-top: 1px solid #f0f0f0;
+            text-align: right;
+        }
+        
+        .btn-detail-page {
+            display: inline-block;
+            background-color: #4a90e2;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-detail-page:hover {
+            background-color: #3a7bc8;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #4a90e2;
+            border-radius: 4px;
+        }
+
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        /* Project status styles */
+        .project-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+        
+        .status-ongoing {
+            background-color: #ffedd5;
+            color: #9a3412;
+        }
+        
+        .status-complete {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-planning {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .status-halted {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .status-partially {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-unknown {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+
+        /* Table styles */
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse;
+            display: none;
+        }
+        
+        .projects-table th,
+        .projects-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .projects-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .projects-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Filter controls */
+        .filter-controls {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .filter-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .filter-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-filter {
+            background-color: #4a90e2;
+            color: white;
+        }
+        
+        .apply-filter:hover {
+            background-color: #3a7bc8;
+        }
+        
+        .reset-filter {
+            background-color: #f3f4f6;
+            color: #4b5563;
+        }
+        
+        .reset-filter:hover {
+            background-color: #e5e7eb;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-group {
+                flex: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -27,60 +333,91 @@
     </header>
 
     <main>
-        <section class="page-header">
-            <h1>Nepal Infrastructure Projects</h1>
-            <p>A comprehensive database of infrastructure projects across Nepal</p>
-        </section>
-
-        <section class="filters">
-            <div class="filter-container">
-                <div class="filter-group">
-                    <label for="filter-category">Category:</label>
-                    <select id="filter-category">
-                        <option value="all">All Categories</option>
-                        <!-- Categories will be populated dynamically -->
-                    </select>
+        <section class="projects-section">
+            <h1>Nepal's Infrastructure Projects</h1>
+            <p class="section-intro">Explore Nepal's major infrastructure initiatives across transportation, energy, water, and other sectors.</p>
+            
+            <!-- Filter controls -->
+            <div class="filter-controls">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="category-filter">Category</label>
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Energy">Energy</option>
+                            <option value="Water Infrastructure">Water Infrastructure</option>
+                            <option value="Rural and Urban Development">Rural Development</option>
+                            <option value="Tourism and Cultural Infrastructure">Tourism</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="province-filter">Province</label>
+                        <select id="province-filter">
+                            <option value="">All Provinces</option>
+                            <option value="Bagmati">Bagmati</option>
+                            <option value="Gandaki">Gandaki</option>
+                            <option value="Madhesh">Madhesh</option>
+                            <option value="Koshi">Koshi</option>
+                            <option value="Lumbini">Lumbini</option>
+                            <option value="Karnali">Karnali</option>
+                            <option value="Sudurpaschim">Sudurpaschim</option>
+                            <option value="Multiple Provinces">Multiple Provinces</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="status-filter">Status</label>
+                        <select id="status-filter">
+                            <option value="">All Statuses</option>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Planning phase">Planning Phase</option>
+                            <option value="Halted">Halted</option>
+                            <option value="Partially operational">Partially Operational</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
+                    </div>
                 </div>
-                
-                <div class="filter-group">
-                    <label for="filter-status">Status:</label>
-                    <select id="filter-status">
-                        <option value="all">All Statuses</option>
-                        <!-- Statuses will be populated dynamically -->
-                    </select>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="search-filter">Search</label>
+                        <input type="text" id="search-filter" placeholder="Search by project name or location...">
+                    </div>
                 </div>
-                
-                <div class="filter-group">
-                    <label for="filter-province">Province:</label>
-                    <select id="filter-province">
-                        <option value="all">All Provinces</option>
-                        <!-- Provinces will be populated dynamically -->
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label for="filter-type">Project Type:</label>
-                    <select id="filter-type">
-                        <option value="all">All Types</option>
-                        <!-- Types will be populated dynamically -->
-                    </select>
+                <div class="filter-actions">
+                    <button class="filter-button reset-filter" id="reset-filters">Reset</button>
+                    <button class="filter-button apply-filter" id="apply-filters">Apply Filters</button>
                 </div>
             </div>
             
-            <div class="view-controls">
-                <button id="grid-view" class="active"><i class="fas fa-th"></i></button>
-                <button id="list-view"><i class="fas fa-list"></i></button>
-            </div>
-        </section>
-
-        <section class="project-results">
-            <div class="result-count">
-                <span id="result-count">0</span> projects found
+            <!-- View toggle -->
+            <div class="view-toggle">
+                <button class="view-button active" id="tile-view-btn">Tile View</button>
+                <button class="view-button" id="table-view-btn">Table View</button>
             </div>
             
-            <div class="projects-list">
-                <!-- Projects will be loaded dynamically -->
+            <!-- Projects display - Tile View -->
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be dynamically inserted here by JavaScript -->
             </div>
+            
+            <!-- Projects display - Table View -->
+            <table class="projects-table" id="projects-table">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Category</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Budget</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Projects will be dynamically inserted here by JavaScript -->
+                </tbody>
+            </table>
         </section>
     </main>
 
@@ -89,6 +426,250 @@
     </footer>
 
     <script src="js/theme-toggle.js"></script>
-    <script src="js/projects-page.js"></script>
+    <script>
+        // Load project data from JSON
+        async function loadProjects() {
+            try {
+                const response = await fetch('data/nepal_projects.json');
+                const projects = await response.json();
+                return projects;
+            } catch (error) {
+                console.error('Error loading project data:', error);
+                return [];
+            }
+        }
+        
+        // Function to create project cards for tile view
+        function createProjectCard(project) {
+            const progressPercent = project.physical_progress_percent || '0';
+            const isComplete = project.status && project.status.toLowerCase().includes('complete');
+            const isFeatured = project.category === 'National Pride Project';
+            
+            // Determine status class
+            let statusClass = 'status-unknown';
+            if (project.status) {
+                const status = project.status.toLowerCase();
+                if (status.includes('ongoing')) statusClass = 'status-ongoing';
+                else if (status.includes('complete')) statusClass = 'status-complete';
+                else if (status.includes('planning')) statusClass = 'status-planning';
+                else if (status.includes('halted')) statusClass = 'status-halted';
+                else if (status.includes('partial')) statusClass = 'status-partially';
+            }
+            
+            const card = document.createElement('div');
+            card.className = `project-card ${isFeatured ? 'featured' : ''}`;
+            
+            card.innerHTML = `
+                <div class="project-header">
+                    <h3>${project.project_name}</h3>
+                    <span class="project-status ${statusClass}">${project.status || 'Unknown'}</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">${project.key_features || 'No description available.'}</p>
+                    
+                    <div class="project-meta">
+                        <div class="project-meta-item">
+                            <span class="meta-label">Budget</span>
+                            <span class="meta-value">${project.revised_budget ? formatCurrency(project.revised_budget, project.currency) : 'Not specified'}</span>
+                        </div>
+                        <div class="project-meta-item">
+                            <span class="meta-label">Agency</span>
+                            <span class="meta-value">${project.implementing_agency || 'Not specified'}</span>
+                        </div>
+                        <div class="project-meta-item">
+                            <span class="meta-label">${isComplete ? 'Completion Date' : 'Target Completion'}</span>
+                            <span class="meta-value">${project.actual_end_date || project.revised_end_date || project.initial_end_date || 'Not specified'}</span>
+                        </div>
+                        <div class="project-meta-item">
+                            <span class="meta-label">Category</span>
+                            <span class="meta-value">${project.category || project.type_sub_category || 'Not specified'}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-label">
+                        <span>Project Progress</span>
+                        <span>${progressPercent}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: ${progressPercent}%"></div>
+                    </div>
+                </div>
+                <div class="project-footer">
+                    <a href="project-detail.html?id=${project.project_id}" class="btn-detail-page">View Details</a>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Function to create table rows for table view
+        function createTableRow(project) {
+            const progressPercent = project.physical_progress_percent || '0';
+            
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <strong>${project.project_name}</strong>
+                    ${project.short_name ? `<br><small>(${project.short_name})</small>` : ''}
+                </td>
+                <td>${project.type_main_category || 'Not specified'}</td>
+                <td>${project.District || project.Province || 'Not specified'}</td>
+                <td>${project.status || 'Unknown'}</td>
+                <td>
+                    <div class="progress-bar" style="width: 100px">
+                        <div class="progress" style="width: ${progressPercent}%"></div>
+                    </div>
+                    <small>${progressPercent}%</small>
+                </td>
+                <td>${project.revised_budget ? formatCurrency(project.revised_budget, project.currency) : 'Not specified'}</td>
+                <td>
+                    <a href="project-detail.html?id=${project.project_id}" class="btn-detail-page">Details</a>
+                </td>
+            `;
+            
+            return row;
+        }
+        
+        // Helper function to format currency values
+        function formatCurrency(value, currency) {
+            if (!value) return 'Not specified';
+            
+            // Convert scientific notation to a regular number
+            let numValue = Number(value);
+            if (isNaN(numValue)) return value;
+            
+            // Format large numbers
+            if (numValue >= 1e9) {
+                return `${(numValue / 1e9).toFixed(2)} billion ${currency || ''}`;
+            } else if (numValue >= 1e6) {
+                return `${(numValue / 1e6).toFixed(2)} million ${currency || ''}`;
+            } else {
+                return `${numValue.toLocaleString()} ${currency || ''}`;
+            }
+        }
+        
+        // Function to display projects
+        async function displayProjects() {
+            const projects = await loadProjects();
+            const gridContainer = document.getElementById('projects-grid');
+            const tableBody = document.getElementById('projects-table').querySelector('tbody');
+            
+            // Clear previous content
+            gridContainer.innerHTML = '';
+            tableBody.innerHTML = '';
+            
+            // Apply filters
+            const filteredProjects = filterProjects(projects);
+            
+            // Display projects
+            filteredProjects.forEach(project => {
+                // Add to grid view
+                const card = createProjectCard(project);
+                gridContainer.appendChild(card);
+                
+                // Add to table view
+                const row = createTableRow(project);
+                tableBody.appendChild(row);
+            });
+            
+            if (filteredProjects.length === 0) {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.textContent = 'No projects match your filters. Please try different criteria.';
+                gridContainer.appendChild(noResults);
+                
+                const tableRow = document.createElement('tr');
+                tableRow.innerHTML = '<td colspan="7">No projects match your filters. Please try different criteria.</td>';
+                tableBody.appendChild(tableRow);
+            }
+        }
+        
+        // Filter projects based on user selection
+        function filterProjects(projects) {
+            const categoryFilter = document.getElementById('category-filter').value;
+            const provinceFilter = document.getElementById('province-filter').value;
+            const statusFilter = document.getElementById('status-filter').value;
+            const searchFilter = document.getElementById('search-filter').value.toLowerCase();
+            
+            return projects.filter(project => {
+                // Category filter
+                if (categoryFilter && project.type_main_category !== categoryFilter) {
+                    return false;
+                }
+                
+                // Province filter
+                if (provinceFilter && project.Province !== provinceFilter) {
+                    return false;
+                }
+                
+                // Status filter
+                if (statusFilter && project.status !== statusFilter) {
+                    return false;
+                }
+                
+                // Search filter
+                if (searchFilter) {
+                    const searchableText = [
+                        project.project_name,
+                        project.short_name,
+                        project.District,
+                        project.specific_location,
+                        project.key_features
+                    ].filter(Boolean).join(' ').toLowerCase();
+                    
+                    if (!searchableText.includes(searchFilter)) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+        }
+        
+        // Set up view toggle
+        function setupViewToggle() {
+            const tileViewBtn = document.getElementById('tile-view-btn');
+            const tableViewBtn = document.getElementById('table-view-btn');
+            const projectsGrid = document.getElementById('projects-grid');
+            const projectsTable = document.getElementById('projects-table');
+            
+            tileViewBtn.addEventListener('click', () => {
+                tileViewBtn.classList.add('active');
+                tableViewBtn.classList.remove('active');
+                projectsGrid.style.display = 'grid';
+                projectsTable.style.display = 'none';
+            });
+            
+            tableViewBtn.addEventListener('click', () => {
+                tableViewBtn.classList.add('active');
+                tileViewBtn.classList.remove('active');
+                projectsTable.style.display = 'table';
+                projectsGrid.style.display = 'none';
+            });
+        }
+        
+        // Set up filter buttons
+        function setupFilters() {
+            const applyBtn = document.getElementById('apply-filters');
+            const resetBtn = document.getElementById('reset-filters');
+            
+            applyBtn.addEventListener('click', displayProjects);
+            
+            resetBtn.addEventListener('click', () => {
+                document.getElementById('category-filter').value = '';
+                document.getElementById('province-filter').value = '';
+                document.getElementById('status-filter').value = '';
+                document.getElementById('search-filter').value = '';
+                displayProjects();
+            });
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProjects();
+            setupViewToggle();
+            setupFilters();
+        });
+    </script>
 </body>
 </html>
