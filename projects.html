@@ -338,39 +338,58 @@
             <p class="section-intro">Explore Nepal's major infrastructure initiatives across transportation, energy, water, and other sectors.</p>
             
             <!-- Filter controls -->
-            <div class="filters-container">
-                <div class="filters-row">
+            <div class="filter-controls">
+                <div class="filter-row">
                     <div class="filter-group">
                         <label for="category-filter">Category</label>
-                        <select id="category-filter" class="filter-select">
-                            <option value="all">All Categories</option>
-                            <!-- Options loaded from JS -->
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Energy">Energy</option>
+                            <option value="Water Infrastructure">Water Infrastructure</option>
+                            <option value="Rural and Urban Development">Rural Development</option>
+                            <option value="Tourism and Cultural Infrastructure">Tourism</option>
                         </select>
                     </div>
-                    
-                    <div class="filter-group">
-                        <label for="status-filter">Status</label>
-                        <select id="status-filter" class="filter-select">
-                            <option value="all">All Statuses</option>
-                            <!-- Options loaded from JS -->
-                        </select>
-                    </div>
-                    
                     <div class="filter-group">
                         <label for="province-filter">Province</label>
-                        <select id="province-filter" class="filter-select">
-                            <option value="all">All Provinces</option>
-                            <!-- Options loaded from JS -->
+                        <select id="province-filter">
+                            <option value="">All Provinces</option>
+                            <option value="Bagmati">Bagmati</option>
+                            <option value="Gandaki">Gandaki</option>
+                            <option value="Madhesh">Madhesh</option>
+                            <option value="Koshi">Koshi</option>
+                            <option value="Lumbini">Lumbini</option>
+                            <option value="Karnali">Karnali</option>
+                            <option value="Sudurpaschim">Sudurpaschim</option>
+                            <option value="Multiple Provinces">Multiple Provinces</option>
                         </select>
                     </div>
-                    
                     <div class="filter-group">
-                        <label for="search-projects">Search</label>
-                        <input type="text" id="search-projects" placeholder="Search projects...">
+                        <label for="status-filter">Status</label>
+                        <select id="status-filter">
+                            <option value="">All Statuses</option>
+                            <option value="Ongoing">Ongoing</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Planning phase">Planning Phase</option>
+                            <option value="Halted">Halted</option>
+                            <option value="Partially operational">Partially Operational</option>
+                            <option value="Unknown">Unknown</option>
+                        </select>
                     </div>
                 </div>
                 
-                <!-- Remove the Apply Filters button -->
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="search-filter">Search</label>
+                        <input type="text" id="search-filter" placeholder="Search by keywords...">
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="filter-button reset-filter" id="reset-filters">Reset</button>
+                    <button class="filter-button apply-filter" id="apply-filters">Apply Filters</button>
+                </div>
             </div>
             
             <!-- View toggle -->
@@ -410,15 +429,178 @@
 
     <script src="js/theme-toggle.js"></script>
     <script>
+        // Sample fallback data in case JSON fails to load
+        const SAMPLE_PROJECTS = [
+            {
+                project_id: "NP001",
+                project_name: "Kathmandu-Tarai Fast Track",
+                short_name: "Fast Track",
+                category: "National Pride Project",
+                type_main_category: "Transportation",
+                status: "Ongoing",
+                physical_progress_percent: "35",
+                Province: "Bagmati",
+                District: "Kathmandu, Makwanpur",
+                implementing_agency: "Nepal Army",
+                revised_budget: 175000000000,
+                currency: "NPR",
+                initial_end_date: "2024-12-31",
+                key_features: "76.2 km expressway connecting Kathmandu to Nijgadh"
+            },
+            {
+                project_id: "NP002",
+                project_name: "Upper Tamakoshi Hydroelectric Project",
+                short_name: "Upper Tamakoshi",
+                category: "National Pride Project",
+                type_main_category: "Energy",
+                status: "Completed",
+                physical_progress_percent: "100",
+                Province: "Bagmati",
+                District: "Dolakha",
+                implementing_agency: "Upper Tamakoshi Hydropower Limited",
+                revised_budget: 85000000000,
+                currency: "NPR",
+                actual_end_date: "2021-07-06",
+                key_features: "456 MW hydroelectric project on the Tamakoshi River"
+            },
+            {
+                project_id: "NP003",
+                project_name: "Melamchi Water Supply Project",
+                short_name: "Melamchi",
+                category: "National Pride Project",
+                type_main_category: "Water Infrastructure",
+                status: "Partially operational",
+                physical_progress_percent: "85",
+                Province: "Bagmati",
+                District: "Sindhupalchok, Kathmandu",
+                implementing_agency: "Melamchi Water Supply Development Board",
+                revised_budget: 35000000000,
+                currency: "NPR",
+                revised_end_date: "2023-12-31",
+                key_features: "Supplies 170 million liters of fresh water daily to Kathmandu Valley"
+            }
+        ];
+
+        // Show debug info
+        function showDebugInfo(message, data) {
+            const debugContainer = document.getElementById('debug-container');
+            if (!debugContainer) {
+                const container = document.createElement('div');
+                container.id = 'debug-container';
+                container.style.cssText = 'margin-top: 30px; padding: 15px; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px;';
+                
+                const heading = document.createElement('h3');
+                heading.textContent = 'Debugging Information';
+                container.appendChild(heading);
+                
+                const content = document.createElement('div');
+                content.id = 'debug-content';
+                container.appendChild(content);
+                
+                const toggle = document.createElement('button');
+                toggle.textContent = 'Toggle Debug Info';
+                toggle.style.cssText = 'margin-top: 10px; padding: 5px 10px;';
+                toggle.onclick = function() {
+                    const content = document.getElementById('debug-content');
+                    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                };
+                container.appendChild(toggle);
+                
+                document.querySelector('.projects-section').appendChild(container);
+            }
+            
+            const debugContent = document.getElementById('debug-content');
+            const msgElem = document.createElement('div');
+            msgElem.innerHTML = `<strong>${message}</strong>`;
+            
+            if (data) {
+                const pre = document.createElement('pre');
+                pre.style.cssText = 'max-height: 200px; overflow: auto; background: #f1f1f1; padding: 10px; margin-top: 5px; font-size: 12px;';
+                pre.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+                msgElem.appendChild(pre);
+            }
+            
+            debugContent.appendChild(msgElem);
+        }
+
+        // Show loading indicator
+        function showLoading(isLoading) {
+            let loadingElem = document.getElementById('loading-indicator');
+            
+            if (isLoading) {
+                if (!loadingElem) {
+                    loadingElem = document.createElement('div');
+                    loadingElem.id = 'loading-indicator';
+                    loadingElem.innerHTML = `
+                        <div style="display: flex; justify-content: center; margin: 20px 0;">
+                            <div style="text-align: center;">
+                                <div class="spinner" style="border: 4px solid rgba(0, 0, 0, 0.1); width: 36px; height: 36px; border-radius: 50%; border-left-color: #4a90e2; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                                <p style="margin-top: 10px;">Loading projects...</p>
+                            </div>
+                        </div>
+                        <style>
+                            @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                        </style>
+                    `;
+                    document.getElementById('projects-grid').appendChild(loadingElem);
+                }
+            } else if (loadingElem) {
+                loadingElem.remove();
+            }
+        }
+
         // Load project data from JSON
         async function loadProjects() {
+            showLoading(true);
+            
             try {
+                showDebugInfo('Attempting to load JSON data from data/nepal_projects.json');
                 const response = await fetch('data/nepal_projects.json');
-                const projects = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    showDebugInfo('Warning: Response is not JSON', contentType);
+                }
+                
+                const responseText = await response.text();
+                showDebugInfo('Received response', responseText.substring(0, 500) + '...');
+                
+                let projects;
+                try {
+                    projects = JSON.parse(responseText);
+                } catch (parseError) {
+                    showDebugInfo('JSON parse error', parseError.message);
+                    throw parseError;
+                }
+                
+                showDebugInfo('Successfully loaded projects', { count: projects.length });
+                showLoading(false);
                 return projects;
             } catch (error) {
-                console.error('Error loading project data:', error);
-                return [];
+                showDebugInfo('Error loading project data', error.toString());
+                showLoading(false);
+                
+                // Show error message to user
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'error-message';
+                errorMsg.style.cssText = 'padding: 15px; background-color: #fee2e2; border: 1px solid #ef4444; border-radius: 5px; margin: 20px 0; color: #b91c1c;';
+                errorMsg.innerHTML = `
+                    <p><strong>Error loading projects:</strong> ${error.message}</p>
+                    <p>Using sample data instead. To fix this:</p>
+                    <ol>
+                        <li>Ensure the file data/nepal_projects.json exists in your project</li>
+                        <li>Check that the file contains valid JSON data</li>
+                        <li>Verify your server is properly configured to serve JSON files</li>
+                    </ol>
+                `;
+                document.getElementById('projects-grid').appendChild(errorMsg);
+                
+                // Return sample data as fallback
+                return SAMPLE_PROJECTS;
             }
         }
         
@@ -533,7 +715,8 @@
         
         // Function to display projects
         async function displayProjects() {
-            const projects = await loadProjects();
+            showDebugInfo('Starting displayProjects function');
+            
             const gridContainer = document.getElementById('projects-grid');
             const tableBody = document.getElementById('projects-table').querySelector('tbody');
             
@@ -541,8 +724,25 @@
             gridContainer.innerHTML = '';
             tableBody.innerHTML = '';
             
+            const projects = await loadProjects();
+            
+            if (!projects || projects.length === 0) {
+                showDebugInfo('No projects data available');
+                const noData = document.createElement('div');
+                noData.className = 'no-results';
+                noData.textContent = 'No project data available.';
+                gridContainer.appendChild(noData);
+                return;
+            }
+            
+            showDebugInfo('Projects loaded, applying filters', { count: projects.length });
+            
             // Apply filters
             const filteredProjects = filterProjects(projects);
+            showDebugInfo('Filters applied', { 
+                filtered: filteredProjects.length,
+                total: projects.length 
+            });
             
             // Display projects
             filteredProjects.forEach(project => {
@@ -572,11 +772,24 @@
             const categoryFilter = document.getElementById('category-filter').value;
             const provinceFilter = document.getElementById('province-filter').value;
             const statusFilter = document.getElementById('status-filter').value;
-            const searchFilter = document.getElementById('search-filter').value.toLowerCase();
+            
+            // Get search filter safely (in case element doesn't exist yet)
+            const searchFilterElement = document.getElementById('search-filter');
+            const searchFilter = searchFilterElement ? searchFilterElement.value.toLowerCase() : '';
+            
+            showDebugInfo('Applied filters', {
+                category: categoryFilter,
+                province: provinceFilter,
+                status: statusFilter,
+                search: searchFilter
+            });
             
             return projects.filter(project => {
                 // Category filter
-                if (categoryFilter && project.type_main_category !== categoryFilter) {
+                if (categoryFilter && 
+                   project.category !== categoryFilter && 
+                   project.type_main_category !== categoryFilter &&
+                   project.type_sub_category !== categoryFilter) {
                     return false;
                 }
                 
@@ -596,8 +809,10 @@
                         project.project_name,
                         project.short_name,
                         project.District,
+                        project.Province,
                         project.specific_location,
-                        project.key_features
+                        project.key_features,
+                        project.implementing_agency
                     ].filter(Boolean).join(' ').toLowerCase();
                     
                     if (!searchableText.includes(searchFilter)) {
@@ -649,6 +864,7 @@
         
         // Initialize the page
         document.addEventListener('DOMContentLoaded', () => {
+            showDebugInfo('DOM loaded, initializing page');
             displayProjects();
             setupViewToggle();
             setupFilters();
