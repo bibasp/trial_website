@@ -483,9 +483,28 @@
 
         // Show debug info
         function showDebugInfo(message, data) {
-            // Debug info disabled
-            return;
+            // Completely disable debug information
+            // Set debug mode to false to ensure nothing is displayed
+            const debugMode = false;
+            
+            if (!debugMode) return;
+            
+            // The code below will never execute due to the return above
+            console.log(`DEBUG: ${message}`, data || '');
+            
+            // Remove any debug elements from the DOM
+            const existingDebugPanel = document.getElementById('debug-info-panel');
+            if (existingDebugPanel) {
+                existingDebugPanel.remove();
+            }
         }
+
+        // Additional cleanup for any existing debug elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Remove any debug panels that might exist
+            const debugElements = document.querySelectorAll('.debug-info, #debug-info-panel, .debug-toggle');
+            debugElements.forEach(element => element.remove());
+        });
 
         // Show loading indicator
         function showLoading(isLoading) {
