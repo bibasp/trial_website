@@ -338,56 +338,39 @@
             <p class="section-intro">Explore Nepal's major infrastructure initiatives across transportation, energy, water, and other sectors.</p>
             
             <!-- Filter controls -->
-            <div class="filter-controls">
-                <div class="filter-row">
+            <div class="filters-container">
+                <div class="filters-row">
                     <div class="filter-group">
                         <label for="category-filter">Category</label>
-                        <select id="category-filter">
-                            <option value="">All Categories</option>
-                            <option value="Transportation">Transportation</option>
-                            <option value="Energy">Energy</option>
-                            <option value="Water Infrastructure">Water Infrastructure</option>
-                            <option value="Rural and Urban Development">Rural Development</option>
-                            <option value="Tourism and Cultural Infrastructure">Tourism</option>
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <!-- Options loaded from JS -->
                         </select>
                     </div>
-                    <div class="filter-group">
-                        <label for="province-filter">Province</label>
-                        <select id="province-filter">
-                            <option value="">All Provinces</option>
-                            <option value="Bagmati">Bagmati</option>
-                            <option value="Gandaki">Gandaki</option>
-                            <option value="Madhesh">Madhesh</option>
-                            <option value="Koshi">Koshi</option>
-                            <option value="Lumbini">Lumbini</option>
-                            <option value="Karnali">Karnali</option>
-                            <option value="Sudurpaschim">Sudurpaschim</option>
-                            <option value="Multiple Provinces">Multiple Provinces</option>
-                        </select>
-                    </div>
+                    
                     <div class="filter-group">
                         <label for="status-filter">Status</label>
-                        <select id="status-filter">
-                            <option value="">All Statuses</option>
-                            <option value="Ongoing">Ongoing</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Planning phase">Planning Phase</option>
-                            <option value="Halted">Halted</option>
-                            <option value="Partially operational">Partially Operational</option>
-                            <option value="Unknown">Unknown</option>
+                        <select id="status-filter" class="filter-select">
+                            <option value="all">All Statuses</option>
+                            <!-- Options loaded from JS -->
                         </select>
                     </div>
-                </div>
-                <div class="filter-row">
+                    
                     <div class="filter-group">
-                        <label for="search-filter">Search</label>
-                        <input type="text" id="search-filter" placeholder="Search by project name or location...">
+                        <label for="province-filter">Province</label>
+                        <select id="province-filter" class="filter-select">
+                            <option value="all">All Provinces</option>
+                            <!-- Options loaded from JS -->
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="search-projects">Search</label>
+                        <input type="text" id="search-projects" placeholder="Search projects...">
                     </div>
                 </div>
-                <div class="filter-actions">
-                    <button class="filter-button reset-filter" id="reset-filters">Reset</button>
-                    <button class="filter-button apply-filter" id="apply-filters">Apply Filters</button>
-                </div>
+                
+                <!-- Remove the Apply Filters button -->
             </div>
             
             <!-- View toggle -->

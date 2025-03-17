@@ -158,3 +158,35 @@ function getProjectById(projectId) {
         project.short_name === projectId
     );
 }
+
+// Add event listeners to automatically apply filters on change
+document.getElementById('category-filter').addEventListener('change', filterProjects);
+document.getElementById('status-filter').addEventListener('change', filterProjects);
+document.getElementById('province-filter').addEventListener('change', filterProjects);
+document.getElementById('search-projects').addEventListener('input', filterProjects);
+
+// Modify your existing filterProjects function or create one if it doesn't exist
+function filterProjects() {
+    // ...existing filtering code...
+    
+    // When calculating progress, handle null values
+    projects.forEach(project => {
+        // Convert null progress to 0
+        if (project.progress === null || project.progress === undefined) {
+            project.progress = 0;
+        }
+        
+        // Display progress in UI elements
+        const progressElement = document.querySelector(`.project-card[data-id="${project.id}"] .progress`);
+        if (progressElement) {
+            progressElement.style.width = `${project.progress}%`;
+        }
+        
+        const progressLabelElement = document.querySelector(`.project-card[data-id="${project.id}"] .progress-label span:last-child`);
+        if (progressLabelElement) {
+            progressLabelElement.textContent = `${project.progress}%`;
+        }
+    });
+    
+    // ...rest of your filtering logic...
+}
