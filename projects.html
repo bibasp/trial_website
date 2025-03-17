@@ -483,44 +483,8 @@
 
         // Show debug info
         function showDebugInfo(message, data) {
-            const debugContainer = document.getElementById('debug-container');
-            if (!debugContainer) {
-                const container = document.createElement('div');
-                container.id = 'debug-container';
-                container.style.cssText = 'margin-top: 30px; padding: 15px; background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px;';
-                
-                const heading = document.createElement('h3');
-                heading.textContent = 'Debugging Information';
-                container.appendChild(heading);
-                
-                const content = document.createElement('div');
-                content.id = 'debug-content';
-                container.appendChild(content);
-                
-                const toggle = document.createElement('button');
-                toggle.textContent = 'Toggle Debug Info';
-                toggle.style.cssText = 'margin-top: 10px; padding: 5px 10px;';
-                toggle.onclick = function() {
-                    const content = document.getElementById('debug-content');
-                    content.style.display = content.style.display === 'none' ? 'block' : 'none';
-                };
-                container.appendChild(toggle);
-                
-                document.querySelector('.projects-section').appendChild(container);
-            }
-            
-            const debugContent = document.getElementById('debug-content');
-            const msgElem = document.createElement('div');
-            msgElem.innerHTML = `<strong>${message}</strong>`;
-            
-            if (data) {
-                const pre = document.createElement('pre');
-                pre.style.cssText = 'max-height: 200px; overflow: auto; background: #f1f1f1; padding: 10px; margin-top: 5px; font-size: 12px;';
-                pre.textContent = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
-                msgElem.appendChild(pre);
-            }
-            
-            debugContent.appendChild(msgElem);
+            // Debug info disabled
+            return;
         }
 
         // Show loading indicator
