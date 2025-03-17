@@ -3,161 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Project Detail - Bibas Pokhrel</title>
+    <title>Project Details - Bibas Pokhrel</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Enhanced project styling */
-        .detail-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: var(--card-bg, #f8f8f8);
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark-mode .detail-section {
-            background-color: #3a3a3a;
-        }
-        
-        .detail-section h2 {
-            margin-top: 0;
-            color: var(--heading-color, #333);
-            border-bottom: 1px solid var(--border-color, #ddd);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .dark-mode .detail-section h2 {
-            color: #e0e0e0;
-            border-bottom-color: #4a4a4a;
-        }
-        
-        .dark-mode .detail-section h3 {
-            color: #cccccc;
-        }
-        
-        .dark-mode .references-list a {
-            color: #4a90e2;
-        }
-        
-        .overview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .overview-item {
-            background-color: rgba(255, 255, 255, 0.5);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid #4a90e2;
-        }
-        
-        .dark-mode .overview-item {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-left-color: #3a7bc8;
-        }
-        
-        .progress-bar {
-            height: 20px;
-            background-color: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 10px;
-            position: relative;
-        }
-        
-        .progress-bar.large {
-            height: 30px;
-            margin: 15px 0;
-        }
-        
-        .progress {
-            height: 100%;
-            background-color: #4a90e2;
-            border-radius: 10px;
-            transition: width 1s ease;
-        }
-        
-        .progress-bar span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #333;
-            font-weight: 500;
-            font-size: 0.8rem;
-            text-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
-        }
-        
-        .progress-bar.large span {
-            font-size: 1rem;
-        }
-        
-        .progress-date {
-            text-align: right;
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 5px;
-        }
-        
-        /* Markdown content styling */
-        .markdown-content h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .markdown-content h2 {
-            font-size: 1.8rem;
-            margin: 1.5rem 0 1rem;
-        }
-        
-        .markdown-content h3 {
-            font-size: 1.4rem;
-            margin: 1.2rem 0 0.8rem;
-        }
-        
-        .markdown-content p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .markdown-content ul, .markdown-content ol {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-        }
-        
-        .markdown-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .markdown-content blockquote {
-            border-left: 4px solid #4a90e2;
-            padding-left: 1rem;
-            margin-left: 0;
-            color: #666;
-        }
-        
-        .dark-mode .markdown-content blockquote {
-            color: #aaa;
-        }
-        
-        /* Basic styling carried over */
-        #project-title {
-            color: black;
-        }
-        .dark-mode #project-title {
-            color: white;
-        }
-        .project-header {
-            color: black;
-        }
-        .dark-mode {
-            background-color: #2c2c2c;
-            color: #e0e0e0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
     <header>
@@ -165,6 +14,9 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
                 <li><a href="projects.html" class="active">Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -176,80 +28,119 @@
 
     <main>
         <div class="back-link">
-            <a href="projects.html">← Back to Projects</a>
+            <a href="projects.html"><i class="fas fa-arrow-left"></i> Back to Projects</a>
         </div>
         
-        <article class="project-detail">
-            <header class="project-header">
-                <h1 id="project-title">Loading project...</h1>
-                <div id="project-status" class="status-badge"></div>
-            </header>
+        <div id="loading-indicator" class="loading">
+            Loading project details...
+        </div>
+        
+        <section class="project-details" style="display: none;">
+            <div class="project-header">
+                <h1 id="project-name">Project Name</h1>
+                <span id="project-status-badge" class="project-status">Status</span>
+            </div>
             
-            <div class="project-content">
-                <section id="basic-info" class="detail-section">
-                    <h2>Basic Information</h2>
-                    <div class="content"></div>
-                </section>
-                
-                <!-- Loading indicator -->
-                <div id="loading-indicator" style="text-align: center; padding: 30px;">
-                    <p>Loading project details...</p>
+            <div class="detail-section">
+                <h2>Overview</h2>
+                <div class="overview-grid">
+                    <div class="overview-item">
+                        <h3>Category</h3>
+                        <p id="project-category">Category</p>
+                        <p id="project-sub-category">Sub-category</p>
+                        <p id="project-specific-type">Specific type</p>
+                    </div>
+                    
+                    <div class="overview-item">
+                        <h3>Location</h3>
+                        <p id="project-province">Province</p>
+                        <p id="project-district">District</p>
+                        <p id="project-specific-location">Specific location</p>
+                    </div>
+                    
+                    <div class="overview-item">
+                        <h3>Timeline</h3>
+                        <p><strong>Start:</strong> <span id="project-start-date">-</span></p>
+                        <p><strong>Initial End:</strong> <span id="project-initial-end-date">-</span></p>
+                        <p><strong>Revised End:</strong> <span id="project-revised-end-date">-</span></p>
+                        <p><strong>Actual End:</strong> <span id="project-actual-end-date">-</span></p>
+                    </div>
+                    
+                    <div class="overview-item">
+                        <h3>Budget</h3>
+                        <p><strong>Initial:</strong> <span id="project-initial-budget">-</span></p>
+                        <p><strong>Revised:</strong> <span id="project-revised-budget">-</span></p>
+                        <p><strong>Currency:</strong> <span id="project-currency">-</span></p>
+                        <p><strong>Funding:</strong> <span id="project-funding-model">-</span></p>
+                    </div>
                 </div>
                 
-                <!-- This will hold the detailed markdown content -->
-                <div id="markdown-content" class="markdown-content" style="display: none;">
-                    <!-- Markdown content will be loaded here -->
+                <div id="project-progress-container" class="progress-container">
+                    <h3>Project Progress</h3>
+                    <div class="progress-bar large">
+                        <div id="project-progress-bar" class="progress" style="width: 0%"></div>
+                        <span id="project-progress-text">0% complete</span>
+                    </div>
+                    <p class="progress-date">Last updated: <span id="project-progress-date">Not specified</span></p>
                 </div>
                 
-                <!-- Fallback content sections if no markdown is found -->
-                <div id="fallback-sections" style="display: none;">
-                    <section id="geographical" class="detail-section">
-                        <h2>Geographical Coverage</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="timeline" class="detail-section">
-                        <h2>Timeline and Status</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="financial-details" class="detail-section">
-                        <h2>Financial Details</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="implementation" class="detail-section">
-                        <h2>Implementation Structure</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="technical-specs" class="detail-section">
-                        <h2>Technical Specifications</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="socioeconomic" class="detail-section">
-                        <h2>Socioeconomic Impact</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="challenges" class="detail-section">
-                        <h2>Challenges and Controversies</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="historical-context" class="detail-section">
-                        <h2>Historical Context</h2>
-                        <div class="content"></div>
-                    </section>
-                    
-                    <section id="future-outlook" class="detail-section">
-                        <h2>Future Outlook</h2>
-                        <div class="content"></div>
-                    </section>
+                <div id="project-key-features-container" class="key-features">
+                    <h3>Key Features</h3>
+                    <p id="project-key-features">No key features specified</p>
                 </div>
             </div>
-        </article>
+            
+            <div class="detail-section">
+                <h2>Implementation</h2>
+                <div class="implementation-grid">
+                    <div class="implementation-item">
+                        <h3>Implementing Agency</h3>
+                        <p id="project-implementing-agency">Not specified</p>
+                    </div>
+                    
+                    <div class="implementation-item">
+                        <h3>Primary Contractor</h3>
+                        <p id="project-primary-contractor">Not specified</p>
+                    </div>
+                    
+                    <div class="implementation-item">
+                        <h3>Sub Contractors</h3>
+                        <p id="project-sub-contractors">Not specified</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h2>Technical Specifications</h2>
+                <div class="technical-grid">
+                    <div class="technical-item" id="length-container">
+                        <h3>Length</h3>
+                        <p id="project-length">Not specified</p>
+                    </div>
+                    
+                    <div class="technical-item" id="capacity-container">
+                        <h3>Capacity</h3>
+                        <p id="project-capacity">Not specified</p>
+                    </div>
+                    
+                    <div class="technical-item" id="area-container">
+                        <h3>Area</h3>
+                        <p id="project-area">Not specified</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="detail-section" id="challenges-container">
+                <h2>Challenges</h2>
+                <p id="project-challenges">No challenges specified</p>
+            </div>
+        </section>
+        
+        <div id="error-message" class="error-message" style="display: none;">
+            <h3>Error</h3>
+            <p id="error-text">Failed to load project details.</p>
+            <a href="projects.html" class="btn btn-primary">Back to Projects</a>
+        </div>
     </main>
 
     <footer>
@@ -257,194 +148,225 @@
     </footer>
 
     <script src="js/theme-toggle.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="js/api-client.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the project ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const projectId = urlParams.get('id');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get project ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            
+            if (!projectId) {
+                showError('No project ID specified. Please select a project from the projects page.');
+                return;
+            }
+            
+            // Fetch project data from JSON file
+            fetchProjectData(projectId);
+        });
         
-        if (!projectId) {
-            document.getElementById('project-title').textContent = 'Project Not Found';
-            document.getElementById('loading-indicator').style.display = 'none';
-            return;
+        function fetchProjectData(projectId) {
+            // Try different possible paths for the JSON file
+            const possiblePaths = [
+                'data/nepal_projects.json',
+                '../data/nepal_projects.json',
+                './data/nepal_projects.json',
+                '/data/nepal_projects.json'
+            ];
+            
+            // Try each path in sequence until one works
+            tryNextPath(possiblePaths, 0, projectId);
         }
         
-        // Use the API client to fetch project details
-        apiClient.getProjectDetails(projectId)
-            .then(data => {
-                displayProjectDetails(data.project, data.details);
-            })
-            .catch(error => {
-                console.error('Error loading project:', error);
-                document.getElementById('project-title').textContent = 'Error Loading Project';
-                document.getElementById('loading-indicator').innerHTML = 
-                    `<p>Failed to load project details. Please try again later.</p>
-                     <p>Error: ${error.message}</p>`;
-            });
+        function tryNextPath(paths, index, projectId) {
+            if (index >= paths.length) {
+                showError('Could not load project data. Please try again later.');
+                return;
+            }
+            
+            const path = paths[index];
+            console.log(`Attempting to fetch from: ${path}`);
+            
+            fetch(path)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(projects => {
+                    console.log(`Successfully loaded projects from ${path}`);
+                    
+                    // Find the specific project by ID
+                    const project = projects.find(p => p.project_id === projectId);
+                    
+                    if (project) {
+                        // Display the project details
+                        displayProjectDetails(project);
+                    } else {
+                        showError(`Project with ID "${projectId}" not found.`);
+                    }
+                })
+                .catch(error => {
+                    console.error(`Error loading from ${path}:`, error);
+                    // Try the next path
+                    tryNextPath(paths, index + 1, projectId);
+                });
+        }
         
-        function displayProjectDetails(project, markdownContent) {
+        function displayProjectDetails(project) {
             // Hide loading indicator
             document.getElementById('loading-indicator').style.display = 'none';
             
-            // Set the page title
-            document.title = `${project.project_name} - Project Detail`;
+            // Show project details section
+            document.querySelector('.project-details').style.display = 'block';
             
-            // Set the project title and status
-            document.getElementById('project-title').textContent = project.project_name;
-            const statusElement = document.getElementById('project-status');
-            statusElement.textContent = project.status || 'Unknown';
-            statusElement.className = `status-badge ${getStatusClass(project.status)}`;
+            // Set page title
+            document.title = `${project.project_name} - Project Details`;
             
             // Basic information
-            document.querySelector('#basic-info .content').innerHTML = `
-                <div class="overview-grid">
-                    <div class="overview-item">
-                        <h3>Location</h3>
-                        <p>${project.Province || 'N/A'}</p>
-                        ${project.District ? `<p>District: ${project.District}</p>` : ''}
-                        ${project.specific_location ? `<p>Specific Location: ${project.specific_location}</p>` : ''}
-                    </div>
-                    
-                    <div class="overview-item">
-                        <h3>Project Type</h3>
-                        <p>Category: ${project.type_main_category || 'N/A'}</p>
-                        <p>Sub-category: ${project.type_sub_category || 'N/A'}</p>
-                    </div>
-                    
-                    <div class="overview-item">
-                        <h3>Timeline</h3>
-                        <p>Start Date: ${formatDate(project.start_date) || 'Not specified'}</p>
-                        ${project.initial_end_date ? `<p>Initial End Date: ${formatDate(project.initial_end_date)}</p>` : ''}
-                        ${project.revised_end_date ? `<p>Revised End Date: ${formatDate(project.revised_end_date)}</p>` : ''}
-                        ${project.actual_end_date ? `<p>Actual End Date: ${formatDate(project.actual_end_date)}</p>` : ''}
-                    </div>
-                    
-                    <div class="overview-item">
-                        <h3>Budget</h3>
-                        <p>Initial Budget: ${project.initial_budget ? formatCurrency(project.initial_budget, project.currency) : 'Not specified'}</p>
-                        ${project.revised_budget ? `<p>Revised Budget: ${formatCurrency(project.revised_budget, project.currency)}</p>` : ''}
-                        <p>Funding Model: ${project.funding_model || 'Not specified'}</p>
-                    </div>
-                </div>
-                
-                ${project.physical_progress_percent ? `
-                <div class="overview-section">
-                    <h3>Progress</h3>
-                    <div class="progress-bar large">
-                        <div class="progress" style="width: ${project.physical_progress_percent}%"></div>
-                        <span>${project.physical_progress_percent}% complete</span>
-                    </div>
-                    <p class="progress-date">Last updated: ${formatDate(project.progress_updated_date) || 'Unknown'}</p>
-                </div>` : ''}
-            `;
+            document.getElementById('project-name').textContent = project.project_name || 'Unnamed Project';
             
-            // If we have markdown content, render it
-            if (markdownContent) {
-                const markdownElement = document.getElementById('markdown-content');
-                markdownElement.innerHTML = marked.parse(markdownContent);
-                markdownElement.style.display = 'block';
+            // Status badge
+            const statusElement = document.getElementById('project-status-badge');
+            statusElement.textContent = project.status || 'Unknown';
+            statusElement.className = 'project-status ' + getStatusClass(project.status);
+            
+            // Category information
+            document.getElementById('project-category').textContent = project.type_main_category || 'Not specified';
+            document.getElementById('project-sub-category').textContent = project.type_sub_category || 'Not specified';
+            document.getElementById('project-specific-type').textContent = project.type_specific_type !== "NULL" ? project.type_specific_type : 'Not specified';
+            
+            // Location information
+            document.getElementById('project-province').textContent = project.Province !== "NULL" ? project.Province : 'Not specified';
+            document.getElementById('project-district').textContent = project.District !== "NULL" ? project.District : 'Not specified';
+            document.getElementById('project-specific-location').textContent = project.specific_location !== "NULL" ? project.specific_location : 'Not specified';
+            
+            // Timeline information
+            document.getElementById('project-start-date').textContent = formatDate(project.start_date);
+            document.getElementById('project-initial-end-date').textContent = formatDate(project.initial_end_date);
+            document.getElementById('project-revised-end-date').textContent = formatDate(project.revised_end_date);
+            document.getElementById('project-actual-end-date').textContent = formatDate(project.actual_end_date);
+            
+            // Budget information
+            document.getElementById('project-initial-budget').textContent = formatCurrency(project.initial_budget, project.currency);
+            document.getElementById('project-revised-budget').textContent = formatCurrency(project.revised_budget, project.currency);
+            document.getElementById('project-currency').textContent = project.currency !== "NULL" ? project.currency : 'NPR';
+            document.getElementById('project-funding-model').textContent = project.funding_model !== "NULL" ? project.funding_model : 'Not specified';
+            
+            // Progress information
+            const progress = project.physical_progress_percent !== "NULL" ? project.physical_progress_percent : '0';
+            const progressContainer = document.getElementById('project-progress-container');
+            if (progress && progress !== '0') {
+                document.getElementById('project-progress-bar').style.width = `${progress}%`;
+                document.getElementById('project-progress-text').textContent = `${progress}% complete`;
+                document.getElementById('project-progress-date').textContent = formatDate(project.progress_updated_date) || 'Not specified';
+                progressContainer.style.display = 'block';
             } else {
-                // Otherwise show the fallback sections with basic data
-                document.getElementById('fallback-sections').style.display = 'block';
-                
-                // Fill in the fallback sections with available data
-                if (project.District || project.specific_location) {
-                    let geoContent = '';
-                    if (project.specific_location) geoContent += `<p>${project.specific_location}</p>`;
-                    if (project.District) geoContent += `<p>Districts: ${project.District}</p>`;
-                    if (project.Province) geoContent += `<p>Province: ${project.Province}</p>`;
-                    
-                    document.querySelector('#geographical .content').innerHTML = geoContent;
-                } else {
-                    document.getElementById('geographical').style.display = 'none';
-                }
-                
-                // Technical specs
-                if (project.length_km || project.capacity || project.key_features) {
-                    let techContent = '';
-                    if (project.key_features) techContent += `<p>${project.key_features}</p>`;
-                    if (project.length_km) techContent += `<p>Length: ${project.length_km} km</p>`;
-                    if (project.capacity) techContent += `<p>Capacity: ${project.capacity}</p>`;
-                    
-                    document.querySelector('#technical-specs .content').innerHTML = techContent;
-                } else {
-                    document.getElementById('technical-specs').style.display = 'none';
-                }
-                
-                // Implementation structure
-                if (project.implementing_agency || project.primary_contractor || project.sub_contractors) {
-                    let implContent = '';
-                    if (project.implementing_agency) implContent += `<p><strong>Implementing Agency:</strong> ${project.implementing_agency}</p>`;
-                    if (project.primary_contractor) implContent += `<p><strong>Primary Contractor:</strong> ${project.primary_contractor}</p>`;
-                    if (project.sub_contractors) implContent += `<p><strong>Sub-contractors:</strong> ${project.sub_contractors}</p>`;
-                    
-                    document.querySelector('#implementation .content').innerHTML = implContent;
-                } else {
-                    document.getElementById('implementation').style.display = 'none';
-                }
-                
-                // Challenges
-                if (project.challenges) {
-                    document.querySelector('#challenges .content').innerHTML = `<p>${project.challenges}</p>`;
-                } else {
-                    document.getElementById('challenges').style.display = 'none';
-                }
-                
-                // Hide other sections that don't have specific data
-                document.getElementById('socioeconomic').style.display = 'none';
-                document.getElementById('historical-context').style.display = 'none';
-                document.getElementById('future-outlook').style.display = 'none';
+                progressContainer.style.display = 'none';
+            }
+            
+            // Key features
+            const keyFeaturesContainer = document.getElementById('project-key-features-container');
+            if (project.key_features && project.key_features !== "NULL") {
+                document.getElementById('project-key-features').textContent = project.key_features;
+                keyFeaturesContainer.style.display = 'block';
+            } else {
+                keyFeaturesContainer.style.display = 'none';
+            }
+            
+            // Implementation information
+            document.getElementById('project-implementing-agency').textContent = 
+                project.implementing_agency !== "NULL" ? project.implementing_agency : 'Not specified';
+            document.getElementById('project-primary-contractor').textContent = 
+                project.primary_contractor !== "NULL" ? project.primary_contractor : 'Not specified';
+            document.getElementById('project-sub-contractors').textContent = 
+                project.sub_contractors !== "NULL" ? project.sub_contractors : 'Not specified';
+            
+            // Technical specifications
+            const lengthContainer = document.getElementById('length-container');
+            if (project.length_km && project.length_km !== "NULL") {
+                document.getElementById('project-length').textContent = `${project.length_km} km`;
+                lengthContainer.style.display = 'block';
+            } else {
+                lengthContainer.style.display = 'none';
+            }
+            
+            const capacityContainer = document.getElementById('capacity-container');
+            if (project.capacity && project.capacity !== "NULL") {
+                document.getElementById('project-capacity').textContent = project.capacity;
+                capacityContainer.style.display = 'block';
+            } else {
+                capacityContainer.style.display = 'none';
+            }
+            
+            const areaContainer = document.getElementById('area-container');
+            if (project.area_hectares && project.area_hectares !== "NULL") {
+                document.getElementById('project-area').textContent = `${project.area_hectares} hectares`;
+                areaContainer.style.display = 'block';
+            } else {
+                areaContainer.style.display = 'none';
+            }
+            
+            // Challenges
+            const challengesContainer = document.getElementById('challenges-container');
+            if (project.challenges && project.challenges !== "NULL") {
+                document.getElementById('project-challenges').textContent = project.challenges;
+                challengesContainer.style.display = 'block';
+            } else {
+                challengesContainer.style.display = 'none';
             }
         }
         
-        // Helper function for formatting dates
+        function showError(message) {
+            document.getElementById('loading-indicator').style.display = 'none';
+            const errorElement = document.getElementById('error-message');
+            document.getElementById('error-text').textContent = message;
+            errorElement.style.display = 'block';
+        }
+        
         function formatDate(dateString) {
-            if (!dateString) return '';
+            if (!dateString || dateString === "NULL") return 'Not specified';
             
-            const parts = dateString.split('/');
-            if (parts.length === 3) {
-                const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                              'July', 'August', 'September', 'October', 'November', 'December'];
-                return `${months[parseInt(parts[0])-1]} ${parts[1]}, ${parts[2]}`;
+            // Check if in format MM/DD/YYYY
+            const dateParts = dateString.split('/');
+            if (dateParts.length === 3) {
+                const [month, day, year] = dateParts;
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                return `${monthNames[parseInt(month) - 1]} ${day}, ${year}`;
             }
+            
             return dateString;
         }
         
-        // Helper function for formatting currency
         function formatCurrency(amount, currency) {
-            if (!amount) return 'Unknown';
+            if (!amount || amount === "NULL") return 'Not specified';
             
-            // Handle scientific notation
-            if (typeof amount === 'string' && amount.includes('E')) {
-                const num = parseFloat(amount);
-                amount = num.toLocaleString();
-            } else if (amount) {
-                amount = parseFloat(amount).toLocaleString();
+            const currencySymbol = currency !== "NULL" ? currency : 'NPR';
+            try {
+                const formattedAmount = Number(amount).toLocaleString();
+                return `${currencySymbol} ${formattedAmount}`;
+            } catch (e) {
+                return `${currencySymbol} ${amount}`;
             }
-            
-            return `${amount} ${currency || 'NPR'}`;
         }
         
-        // Helper function to determine status class
         function getStatusClass(status) {
-            if (!status) return 'status-unknown';
+            if (!status || status === "NULL") return 'status-unknown';
             
             const statusLower = status.toLowerCase();
-            if (statusLower.includes('complet') || statusLower.includes('operation')) {
+            if (statusLower.includes('complete') || statusLower.includes('operation')) {
                 return 'status-complete';
             } else if (statusLower.includes('ongoing')) {
                 return 'status-ongoing';
+            } else if (statusLower.includes('partial')) {
+                return 'status-partially';
+            } else if (statusLower.includes('halted')) {
+                return 'status-halted';
             } else if (statusLower.includes('plan')) {
                 return 'status-planning';
-            } else if (statusLower.includes('halt')) {
-                return 'status-halted';
             } else {
                 return 'status-unknown';
             }
         }
-    });
     </script>
 </body>
 </html>
