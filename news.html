@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New in Civil Engineering - Bibas Pokhrel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .news-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .news-item {
+                display: grid;
+                grid-template-columns: 250px 1fr;
+                grid-gap: 1.5rem;
+            }
+        }
+        
+        .news-item {
+            background-color: var(--bg-card);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .news-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .news-image {
+                height: 100%;
+            }
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-item:hover .news-image img {
+            transform: scale(1.05);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .news-date {
+            font-size: var(--font-size-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .news-title {
+            font-size: var(--font-size-lg);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+        
+        .news-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .news-source {
+            margin-top: auto;
+            font-size: var(--font-size-sm);
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+        
+        .news-actions {
+            margin-top: 0.75rem;
+        }
+        
+        .filter-bar {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-radius);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: var(--font-size-sm);
+        }
+        
+        .filter-tab:hover, .filter-tab.active {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .search-bar {
+            display: flex;
+            max-width: 300px;
+            width: 100%;
+        }
+        
+        .search-bar input {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-top-left-radius: var(--btn-radius);
+            border-bottom-left-radius: var(--btn-radius);
+            font-size: var(--font-size-sm);
+        }
+        
+        .search-bar button {
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: white;
+            border: 1px solid var(--accent);
+            border-top-right-radius: var(--btn-radius);
+            border-bottom-right-radius: var(--btn-radius);
+            cursor: pointer;
+        }
+
+        .dark-mode .news-title {
+            color: var(--text-color-light, #ffffff);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html" class="active">What's New</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>What's New in Civil Engineering</h1>
+            <p>Stay updated on the latest technologies, innovations, and developments in the field</p>
+        </section>
+
+        <section class="filter-bar">
+            <div class="filter-tabs">
+                <button class="filter-tab active">All</button>
+                <button class="filter-tab">Technology</button>
+                <button class="filter-tab">Case Studies</button>
+                <button class="filter-tab">Industry News</button>
+                <button class="filter-tab">Events</button>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search news...">
+                <button>Search</button>
+            </div>
+        </section>
+
+        <section class="news-container">
+            <article class="news-item">
+                <div class="news-image">
+                    <img src="images/news-3dprinting.jpg" alt="3D Printed Building" onerror="this.src='https://via.placeholder.com/400x250?text=3D+Printing+in+Construction'">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">Technology</span>
+                        <span class="news-date">March 15, 2025</span>
+                    </div>
+                    <h2 class="news-title">3D Printing Technology Revolutionizes Housing Construction</h2>
+                    <p class="news-excerpt">A breakthrough in 3D printing technology has made it possible to construct affordable housing in just 24 hours. The new system, developed by Advanced Construction Technologies, uses locally sourced materials and can reduce construction costs by up to 40% while minimizing waste. The technology has been successfully deployed in post-disaster recovery efforts in Southeast Asia.</p>
+                    <div class="news-source">Source: Engineering News Record</div>
+                    <div class="news-actions">
+                        <a href="#" class="btn btn-outline">Read Full Article</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <div class="news-image">
+                    <img src="images/news-carbonconcrete.jpg" alt="Carbon-Capturing Concrete" onerror="this.src='https://via.placeholder.com/400x250?text=Carbon+Capturing+Concrete'">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">Technology</span>
+                        <span class="news-date">March 8, 2025</span>
+                    </div>
+                    <h2 class="news-title">Carbon-Capturing Concrete Receives ASCE Innovation Award</h2>
+                    <p class="news-excerpt">A revolutionary concrete formulation that actively captures and sequesters carbon dioxide from the atmosphere has received the American Society of Civil Engineers' 2025 Innovation Award. The new material, developed by researchers at CalTech, can absorb up to 30% of its weight in CO2 over its lifetime, potentially transforming concrete from an environmental liability into a carbon sink.</p>
+                    <div class="news-source">Source: ASCE</div>
+                    <div class="news-actions">
+                        <a href="#" class="btn btn-outline">Read Full Article</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <div class="news-image">
+                    <img src="images/news-digitaltwin.jpg" alt="Digital Twin Technology" onerror="this.src='https://via.placeholder.com/400x250?text=Digital+Twin+Technology'">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">Case Study</span>
+                        <span class="news-date">February 28, 2025</span>
+                    </div>
+                    <h2 class="news-title">Singapore Implements City-Wide Digital Twin for Infrastructure Management</h2>
+                    <p class="news-excerpt">Singapore has completed the implementation of a comprehensive digital twin of its urban infrastructure, allowing real-time monitoring and predictive maintenance of roads, bridges, water systems, and public buildings. The system integrates data from over 100,000 IoT sensors and provides a unified platform for multiple government agencies to coordinate infrastructure management.</p>
+                    <div class="news-source">Source: Smart Cities World</div>
+                    <div class="news-actions">
+                        <a href="#" class="btn btn-outline">Read Full Article</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <div class="news-image">
+                    <img src="images/news-earthquake.jpg" alt="Earthquake Resilient Structure" onerror="this.src='https://via.placeholder.com/400x250?text=Earthquake+Engineering'">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">Technology</span>
+                        <span class="news-date">February 20, 2025</span>
+                    </div>
+                    <h2 class="news-title">New Seismic Isolation System Shows Unprecedented Performance in Shake Table Tests</h2>
+                    <p class="news-excerpt">A novel seismic isolation system developed at the University of California, Berkeley has demonstrated exceptional performance during recent large-scale shake table tests. The system, which combines fluid dampers with advanced composite materials, reduced structural displacement by 85% compared to conventional isolation systems when subjected to simulations of the strongest recorded earthquakes.</p>
+                    <div class="news-source">Source: Structural Engineering Journal</div>
+                    <div class="news-actions">
+                        <a href="#" class="btn btn-outline">Read Full Article</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <div class="news-image">
+                    <img src="images/news-infrastructure.jpg" alt="Smart Infrastructure" onerror="this.src='https://via.placeholder.com/400x250?text=Infrastructure+Investment'">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">Industry News</span>
+                        <span class="news-date">February 15, 2025</span>
+                    </div>
+                    <h2 class="news-title">Global Infrastructure Investment to Reach $94 Trillion by 2035, Report Finds</h2>
+                    <p class="news-excerpt">A comprehensive report by the Global Infrastructure Hub projects that worldwide infrastructure investment will reach $94 trillion by 2035, with renewable energy and climate-resilient infrastructure accounting for nearly 40% of all new development. The report highlights significant investment gaps in developing regions and calls for innovative financing mechanisms to bridge the divide.</p>
+                    <div class="news-source">Source: Global Infrastructure Hub</div>
+                    <div class="news-actions">
+                        <a href="#" class="btn btn-outline">Read Full Article</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="news-item">
+                <div class="news-image">
+                    <img src="images/news-conference.jpg" alt="Infrastructure Conference" onerror="this.src='https://via.placeholder.com/400x250?text=Engineering+Conference'">
+                </div>
+                <div class="news-content">
+                    <div class="news-meta">
+                        <span class="news-category">Events</span>
+                        <span class="news-date">February 10, 2025</span>
+                    </div>
+                    <h2 class="news-title">World Infrastructure Forum 2025 to Focus on Climate Resilience</h2>
+                    <p class="news-excerpt">The upcoming World Infrastructure Forum, scheduled for June 2025 in Rotterdam, will center on climate-resilient infrastructure solutions. The event will bring together over 5,000 engineers, policymakers, and industry leaders to discuss adaptation strategies, innovative materials, and financing models for infrastructure that can withstand extreme weather events and sea level rise.</p>
+                    <div class="news-source">Source: World Infrastructure Forum</div>
+                    <div class="news-actions">
+                        <a href="#" class="btn btn-outline">Read Full Article</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <div class="pagination">
+            <button class="btn btn-pagination" disabled>Previous</button>
+            <div class="page-numbers">
+                <span class="page-number active">1</span>
+                <span class="page-number">2</span>
+                <span class="page-number">3</span>
+            </div>
+            <button class="btn btn-pagination">Next</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

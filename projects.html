@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure Projects - Bibas Pokhrel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Nepal Infrastructure Projects</h1>
+            <p>A comprehensive database of infrastructure projects across Nepal</p>
+        </section>
+
+        <section class="filters">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="filter-category">Category:</label>
+                    <select id="filter-category">
+                        <option value="all">All Categories</option>
+                        <!-- Categories will be populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filter-status">Status:</label>
+                    <select id="filter-status">
+                        <option value="all">All Statuses</option>
+                        <!-- Statuses will be populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filter-province">Province:</label>
+                    <select id="filter-province">
+                        <option value="all">All Provinces</option>
+                        <!-- Provinces will be populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filter-type">Project Type:</label>
+                    <select id="filter-type">
+                        <option value="all">All Types</option>
+                        <!-- Types will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+            
+            <div class="view-controls">
+                <button id="grid-view" class="active"><i class="fas fa-th"></i></button>
+                <button id="list-view"><i class="fas fa-list"></i></button>
+            </div>
+        </section>
+
+        <section class="project-results">
+            <div class="result-count">
+                <span id="result-count">0</span> projects found
+            </div>
+            
+            <div class="projects-list">
+                <!-- Projects will be loaded dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/projects-page.js"></script>
+</body>
+</html>

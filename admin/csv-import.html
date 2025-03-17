@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Infrastructure Projects - Admin CSV Import</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Optimized font loading - only include weights actually used -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+            
+        .admin-title {
+            font-size: 1.8rem;
+            color: #4a90e2;
+        }
+        
+        .admin-card {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        
+        .admin-card h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        /* Consolidated form styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        /* Button styles */
+        .btn-admin {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .btn-admin:hover {
+            background-color: #3a7bc8;
+        }
+        
+        /* Table styles */
+        .csv-preview {
+            overflow-x: auto;
+        }
+        
+        .csv-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .csv-table th, .csv-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .csv-table th {
+            background-color: #f2f2f2;
+        }
+        
+        /* Consolidated alert styles */
+        .alert, .auth-warning {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .auth-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel - Admin</div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Back to Site</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-header">
+            <h1 class="admin-title">Infrastructure Projects Database Management</h1>
+        </div>
+        
+        <div class="auth-warning">
+            <strong>Note:</strong> In a production environment, this page should be password-protected. This is a demonstration interface only.
+        </div>
+        
+        <div class="admin-card">
+            <h2>Import/Update CSV Data</h2>
+            <p>Upload a CSV file to update the infrastructure projects database.</p>
+            <form id="csv-upload-form">
+                <div class="form-group">
+                    <label for="csv-file">Select CSV File</label>
+                    <input type="file" id="csv-file" class="form-control" accept=".csv">
+                </div>
+                <div class="form-group">
+                    <button type="button" id="preview-csv" class="btn-admin">Preview CSV</button>
+                    <button type="button" id="save-csv" class="btn-admin" disabled>Save to Database</button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="preview-container" class="admin-card" style="display: none;">
+            <h2>CSV Preview</h2>
+            <div class="csv-preview">
+                <table id="csv-preview-table" class="csv-table">
+                    <!-- CSV content will be displayed here -->
+                </table>
+            </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <button type="button" id="confirm-save" class="btn-admin">Confirm and Save</button>
+                <button type="button" id="cancel-save" class="btn-admin">Cancel</button>
+            </div>
+        </div>
+        
+        <div id="result-container" style="display: none;" class="alert">
+            <!-- Result message will be displayed here -->
+        </div>
+        
+        <div class="admin-card">
+            <h2>Manage Project Content</h2>
+            <p>Each project can have detailed content stored in Markdown files.</p>
+            <div class="form-group">
+                <label for="project-id">Project ID</label>
+                <select id="project-id" class="form-control">
+                    <option value="">Select a project</option>
+                    <!-- Will be populated from CSV data -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="markdown-content">Project Content (Markdown)</label>
+                <textarea id="markdown-content" class="form-control" rows="15" placeholder="# Project Title
+## Basic Information
+...
+"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" id="save-markdown" class="btn-admin">Save Markdown Content</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+    
+    <script src="../js/csv-previewer.js"></script>
+</body>
+</html>

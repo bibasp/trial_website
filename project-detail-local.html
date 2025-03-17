@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail - Bibas Pokhrel (Local Version)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        #project-title {
+            color: black;
+        }
+        .dark-mode #project-title {
+            color: white;
+        }
+        .project-header {
+            color: black;
+        }
+        .dark-mode {
+            background-color: #2c2c2c; /* Dim background color */
+            color: #e0e0e0; /* Dim text color */
+        }
+        
+        /* Server warning */
+        .server-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 5px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index-local.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
+                <li><a href="projects-local.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <div class="server-warning">
+            <h3>⚠️ Local Mode - Limited Functionality</h3>
+            <p>You are viewing the website in local mode without a web server. CSV data loading will not work.</p>
+            <p><strong>For full functionality:</strong> Please run the website using the included server by following instructions in HOW_TO_RUN.md</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="projects-local.html">← Back to Projects</a>
+        </div>
+        
+        <article class="project-detail">
+            <header class="project-header">
+                <h1 id="project-title">Project Details (Local Version)</h1>
+                <div id="project-status" class="status-badge">Local preview</div>
+            </header>
+            
+            <div class="project-content">
+                <section id="basic-info" class="detail-section">
+                    <h2>Basic Information</h2>
+                    <div class="content">
+                        <p>This is a local preview of the project details page. When running the site through a web server, 
+                        this page will dynamically load project details from the CSV file.</p>
+                        
+                        <p>To see the actual project data, please run the website using the Node.js server by following 
+                        the instructions in HOW_TO_RUN.md.</p>
+                    </div>
+                </section>
+                
+                <section id="how-to-run" class="detail-section">
+                    <h2>How to Run the Website with Full Functionality</h2>
+                    <div class="content">
+                        <ol>
+                            <li>Make sure you have <a href="https://nodejs.org/" target="_blank">Node.js</a> installed</li>
+                            <li>Open a command prompt or terminal</li>
+                            <li>Navigate to the website folder using: <br>
+                                <code>cd "c:\Users\bibas\2025-03-16\pro website with data _ 2\Sample website"</code></li>
+                            <li>Run the command: <code>node server.js</code></li>
+                            <li>Open your browser and go to <a href="http://localhost:3000">http://localhost:3000</a></li>
+                        </ol>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+    <script>
+        // Simple script to show a sample project based on the URL parameter
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
+            
+            // Set project title based on ID
+            const projectTitle = document.getElementById('project-title');
+            if (projectId) {
+                switch(projectId) {
+                    case 'TR-HW-001':
+                        projectTitle.textContent = 'Kathmandu-Tarai Fast Track';
+                        document.title = 'Kathmandu-Tarai Fast Track - Project Detail';
+                        break;
+                    case 'EN-HP-001':
+                        projectTitle.textContent = 'Upper Tamakoshi Hydroelectric Project';
+                        document.title = 'Upper Tamakoshi Hydroelectric Project - Project Detail';
+                        break;
+                    case 'WA-DW-001':
+                        projectTitle.textContent = 'Melamchi Water Supply Project';
+                        document.title = 'Melamchi Water Supply Project - Project Detail';
+                        break;
+                    default:
+                        projectTitle.textContent = 'Project Details (ID: ' + projectId + ')';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

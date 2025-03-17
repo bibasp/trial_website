@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Blog - Bibas Pokhrel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-post {
+            background-color: var(--bg-card);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-post:hover .blog-image img {
+            transform: scale(1.05);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: var(--font-size-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .blog-category {
+            display: inline-block;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .blog-title {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: var(--font-size-lg);
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .blog-footer {
+            margin-top: auto;
+        }
+        
+        .blog-filter {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .filter-tag {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--btn-radius);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-tag:hover, .filter-tag.active {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .dark-mode .blog-title {
+            color: var(--text-color-light, #ffffff);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Civil Engineering Blog</h1>
+            <p>Thoughts, insights, and experiences from my work in civil engineering and infrastructure</p>
+        </section>
+
+        <section class="blog-filter">
+            <button class="filter-tag active">All</button>
+            <button class="filter-tag">Structural Engineering</button>
+            <button class="filter-tag">Water Resources</button>
+            <button class="filter-tag">Transportation</button>
+            <button class="filter-tag">Geotechnical</button>
+            <button class="filter-tag">Smart Infrastructure</button>
+            <button class="filter-tag">Sustainability</button>
+        </section>
+
+        <section class="blog-grid">
+            <article class="blog-post">
+                <div class="blog-image">
+                    <img src="images/blog-bim.jpg" alt="BIM Model of a bridge" onerror="this.src='https://via.placeholder.com/400x250?text=BIM+in+Civil+Engineering'">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Smart Infrastructure</span>
+                        <span class="blog-date">March 10, 2025</span>
+                    </div>
+                    <h2 class="blog-title">Leveraging BIM for Nepal's Infrastructure Development</h2>
+                    <p class="blog-excerpt">Building Information Modeling is revolutionizing infrastructure development in Nepal. Here's how we're implementing BIM technologies to improve project delivery and lifecycle management.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="btn btn-outline">Continue Reading</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="blog-image">
+                    <img src="images/blog-sustainability.jpg" alt="Sustainable infrastructure project" onerror="this.src='https://via.placeholder.com/400x250?text=Sustainable+Infrastructure'">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Sustainability</span>
+                        <span class="blog-date">February 28, 2025</span>
+                    </div>
+                    <h2 class="blog-title">Sustainable Materials in Himalayan Construction Projects</h2>
+                    <p class="blog-excerpt">Exploring the use of sustainable and locally-sourced materials in construction projects throughout the Himalayan region, with a focus on reducing environmental impact while maintaining structural integrity.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="btn btn-outline">Continue Reading</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="blog-image">
+                    <img src="images/blog-water.jpg" alt="Water resources management project" onerror="this.src='https://via.placeholder.com/400x250?text=Water+Resources+Management'">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Water Resources</span>
+                        <span class="blog-date">February 15, 2025</span>
+                    </div>
+                    <h2 class="blog-title">Challenges in Urban Water Supply Distribution Networks</h2>
+                    <p class="blog-excerpt">Lessons learned from managing Nepal's largest potable water supply distribution project, with insights into overcoming geographical challenges and implementing smart monitoring systems.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="btn btn-outline">Continue Reading</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="blog-image">
+                    <img src="images/blog-transportation.jpg" alt="Mountain road engineering" onerror="this.src='https://via.placeholder.com/400x250?text=Transportation+Engineering'">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Transportation</span>
+                        <span class="blog-date">January 22, 2025</span>
+                    </div>
+                    <h2 class="blog-title">Resilient Road Design for Himalayan Terrain</h2>
+                    <p class="blog-excerpt">Strategies for designing and maintaining roads in challenging Himalayan terrain, with a focus on resilience against landslides, monsoon flooding, and other natural hazards.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="btn btn-outline">Continue Reading</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="blog-image">
+                    <img src="images/blog-gis.jpg" alt="GIS mapping for infrastructure" onerror="this.src='https://via.placeholder.com/400x250?text=GIS+Applications'">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Smart Infrastructure</span>
+                        <span class="blog-date">January 10, 2025</span>
+                    </div>
+                    <h2 class="blog-title">GIS Applications in Infrastructure Planning</h2>
+                    <p class="blog-excerpt">How Geographic Information Systems are transforming infrastructure planning and management in Nepal, with case studies from recent projects in urban and rural settings.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="btn btn-outline">Continue Reading</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="blog-image">
+                    <img src="images/blog-foundation.jpg" alt="Foundation engineering in seismic zones" onerror="this.src='https://via.placeholder.com/400x250?text=Geotechnical+Engineering'">
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Geotechnical</span>
+                        <span class="blog-date">December 18, 2024</span>
+                    </div>
+                    <h2 class="blog-title">Foundation Solutions for Seismic Zones</h2>
+                    <p class="blog-excerpt">Examining innovative foundation designs for buildings and infrastructure in Nepal's seismically active regions, with lessons learned from the 2015 earthquake reconstruction efforts.</p>
+                    <div class="blog-footer">
+                        <a href="#" class="btn btn-outline">Continue Reading</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <div class="pagination">
+            <button class="btn btn-pagination" disabled>Previous</button>
+            <div class="page-numbers">
+                <span class="page-number active">1</span>
+                <span class="page-number">2</span>
+                <span class="page-number">3</span>
+            </div>
+            <button class="btn btn-pagination">Next</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

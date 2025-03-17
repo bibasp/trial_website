@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Infrastructure Projects - Bibas Pokhrel (Local Version)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dark mode text visibility fix */
+        .dark-mode .project-name h3,
+        .dark-mode .featured-project h3,
+        .dark-mode .project-tile h3 {
+            color: var(--text-color-light, #ffffff);
+        }
+
+        /* Project display styles */
+        .projects-display {
+            position: relative;
+        }
+        
+        .projects-grid {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .projects-grid.active {
+            display: grid;
+            opacity: 1;
+        }
+        
+        .table-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .table-view.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Project tile styles */
+        .project-tile {
+            background: var(--card-bg, #f8f8f8);
+            border: 1px solid var(--border-color, #ddd);
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            background-color: var(--accent-light, #e6f2ff);
+        }
+
+        .project-tile h3 {
+            margin-top: 0;
+            color: var(--heading-color, #333);
+        }
+
+        .project-tile .btn {
+            margin-top: auto;
+        }
+        
+        /* Server warning */
+        .server-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 5px solid #ffeeba;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index-local.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
+                <li><a href="projects-local.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <div class="server-warning">
+            <h3>⚠️ Local Mode - Limited Functionality</h3>
+            <p>You are viewing the website in local mode without a web server. CSV data loading will not work.</p>
+            <p><strong>For full functionality:</strong> Please run the website using the included server by following instructions in HOW_TO_RUN.md</p>
+        </div>
+        
+        <section class="page-header">
+            <h1>Nepal Infrastructure Projects</h1>
+            <p>A comprehensive database of infrastructure projects across Nepal</p>
+        </section>
+
+        <section class="projects-display">
+            <div class="projects-grid active">
+                <!-- Static project tiles for local version -->
+                <div class="project-tile">
+                    <h3>Kathmandu-Tarai Expressway</h3>
+                    <p><strong>Type:</strong> Transportation</p>
+                    <p><strong>Location:</strong> Bagmati</p>
+                    <p><strong>Status:</strong> Ongoing</p>
+                    <a href="pages/kathmandu-tarai-expressway.html" class="btn btn-small">View Details</a>
+                </div>
+                
+                <div class="project-tile">
+                    <h3>Upper Tamakoshi Hydroelectric Project</h3>
+                    <p><strong>Type:</strong> Energy</p>
+                    <p><strong>Location:</strong> Bagmati</p>
+                    <p><strong>Status:</strong> Completed and operational</p>
+                    <a href="project-detail-local.html?id=EN-HP-001" class="btn btn-small">View Details</a>
+                </div>
+                
+                <div class="project-tile">
+                    <h3>Melamchi Water Supply Project</h3>
+                    <p><strong>Type:</strong> Water Infrastructure</p>
+                    <p><strong>Location:</strong> Bagmati</p>
+                    <p><strong>Status:</strong> Partially operational</p>
+                    <a href="project-detail-local.html?id=WA-DW-001" class="btn btn-small">View Details</a>
+                </div>
+                
+                <div class="project-tile">
+                    <h3>Gautam Buddha International Airport</h3>
+                    <p><strong>Type:</strong> Transportation</p>
+                    <p><strong>Location:</strong> Lumbini</p>
+                    <p><strong>Status:</strong> Completed and operational</p>
+                    <a href="project-detail-local.html?id=TR-AP-001" class="btn btn-small">View Details</a>
+                </div>
+                
+                <div class="project-tile">
+                    <h3>Pokhara International Airport</h3>
+                    <p><strong>Type:</strong> Transportation</p>
+                    <p><strong>Location:</strong> Gandaki</p>
+                    <p><strong>Status:</strong> Completed and operational</p>
+                    <a href="project-detail-local.html?id=TR-AP-002" class="btn btn-small">View Details</a>
+                </div>
+                
+                <div class="project-tile">
+                    <h3>Sikta Irrigation Project</h3>
+                    <p><strong>Type:</strong> Water Infrastructure</p>
+                    <p><strong>Location:</strong> Lumbini</p>
+                    <p><strong>Status:</strong> Ongoing</p>
+                    <a href="project-detail-local.html?id=WA-IR-001" class="btn btn-small">View Details</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "nepal-infrastructure-projects",
+  "version": "1.0.0",
+  "description": "Database of infrastructure projects in Nepal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "setup": "node setup-db.js"
+  },
+  "author": "Bibas Pokhrel",
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^5.1.6",
+    "sqlite": "^5.0.1",
+    "marked": "^5.0.2"
+  }
+}

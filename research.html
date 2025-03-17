@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Summaries - Bibas Pokhrel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .research-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .research-item {
+            background-color: var(--bg-card);
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .research-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .research-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .research-title {
+            margin: 0;
+            font-size: var(--font-size-xl);
+        }
+        
+        .research-badge {
+            background-color: var(--accent-light);
+            color: var(--accent);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .research-meta {
+            margin-bottom: 1rem;
+            font-size: var(--font-size-sm);
+            color: var(--text-tertiary);
+        }
+        
+        .research-meta span {
+            margin-right: 1.5rem;
+        }
+        
+        .research-summary {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .research-tag {
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-size: var(--font-size-xs);
+        }
+        
+        .research-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dark-mode .research-title,
+        .dark-mode .research-summary {
+            color: var(--text-color-light, #ffffff);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html" class="active">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Research Summaries</h1>
+            <p>Summaries of significant civil engineering research from the United States and around the world</p>
+        </section>
+
+        <section class="filter-section">
+            <h2>Filter Research</h2>
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="research-area">Research Area:</label>
+                    <select id="research-area" class="filter-select">
+                        <option value="">All Areas</option>
+                        <option value="structural">Structural Engineering</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="environmental">Environmental</option>
+                        <option value="geotechnical">Geotechnical</option>
+                        <option value="water">Water Resources</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="publication-year">Year:</label>
+                    <select id="publication-year" class="filter-select">
+                        <option value="">All Years</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary">Apply Filters</button>
+                <button class="btn btn-secondary">Reset</button>
+            </div>
+        </section>
+
+        <section class="research-container">
+            <article class="research-item">
+                <div class="research-header">
+                    <h2 class="research-title">Self-Healing Concrete Technologies for Infrastructure Resilience</h2>
+                    <span class="research-badge">Structural Engineering</span>
+                </div>
+                
+                <div class="research-meta">
+                    <span><strong>Authors:</strong> M. Johnson, S. Williams, et al.</span>
+                    <span><strong>Institution:</strong> MIT</span>
+                    <span><strong>Year:</strong> 2024</span>
+                </div>
+                
+                <div class="research-summary">
+                    <p>This groundbreaking research from MIT examines the development and implementation of biological self-healing mechanisms in concrete infrastructure. The study demonstrates how engineered microorganisms can facilitate crack repair in concrete structures, dramatically extending service life and reducing maintenance costs. Field tests show a 60% reduction in maintenance requirements over a five-year period compared to traditional concrete structures.</p>
+                    
+                    <p>The research introduces a novel approach using calcium carbonate-producing bacteria that remain dormant in the concrete matrix until cracks form, exposing them to moisture and oxygen. The method is particularly promising for critical infrastructure in seismic zones.</p>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="research-tag">Self-healing materials</span>
+                    <span class="research-tag">Concrete technology</span>
+                    <span class="research-tag">Infrastructure resilience</span>
+                    <span class="research-tag">Biomimetic engineering</span>
+                </div>
+                
+                <div class="research-actions">
+                    <a href="#" class="btn btn-primary">Read Full Summary</a>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+            </article>
+            
+            <article class="research-item">
+                <div class="research-header">
+                    <h2 class="research-title">Smart Pavement Systems for Urban Transportation Networks</h2>
+                    <span class="research-badge">Transportation</span>
+                </div>
+                
+                <div class="research-meta">
+                    <span><strong>Authors:</strong> D. Rodriguez, H. Chang, P. Patel</span>
+                    <span><strong>Institution:</strong> Georgia Tech</span>
+                    <span><strong>Year:</strong> 2024</span>
+                </div>
+                
+                <div class="research-summary">
+                    <p>Georgia Tech researchers have developed an integrated smart pavement system that combines sensors, wireless communication technologies, and advanced materials to create self-monitoring and communicating road infrastructure. The system enables real-time traffic management, predictive maintenance, and vehicle-to-infrastructure communication for autonomous vehicles.</p>
+                    
+                    <p>The research demonstrates how embedded sensor networks can monitor structural integrity, traffic patterns, and environmental conditions. Pilot implementations in Atlanta showed a 28% reduction in traffic congestion and 35% fewer accidents at smart intersections. The technology offers significant implications for smart city development and future transportation systems.</p>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="research-tag">Smart infrastructure</span>
+                    <span class="research-tag">Urban mobility</span>
+                    <span class="research-tag">IoT sensors</span>
+                    <span class="research-tag">Autonomous vehicles</span>
+                </div>
+                
+                <div class="research-actions">
+                    <a href="#" class="btn btn-primary">Read Full Summary</a>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+            </article>
+            
+            <article class="research-item">
+                <div class="research-header">
+                    <h2 class="research-title">Climate-Resilient Infrastructure Design for Coastal Communities</h2>
+                    <span class="research-badge">Environmental</span>
+                </div>
+                
+                <div class="research-meta">
+                    <span><strong>Authors:</strong> A. Lawrence, R. Chen, J. Martinez</span>
+                    <span><strong>Institution:</strong> UC Berkeley</span>
+                    <span><strong>Year:</strong> 2023</span>
+                </div>
+                
+                <div class="research-summary">
+                    <p>This comprehensive study from UC Berkeley addresses the growing challenges of designing and maintaining infrastructure in coastal areas affected by climate change. The research presents a framework for developing climate-resilient infrastructure that can withstand sea level rise, increased storm intensity, and coastal erosion while maintaining functionality.</p>
+                    
+                    <p>The research team analyzed case studies from coastal communities across the United States and developed quantitative models to assess infrastructure vulnerability and adaptive capacity. Their findings indicate that nature-based solutions combined with traditional engineering approaches offer the most cost-effective and sustainable strategy for coastal resilience, reducing damage costs by up to 40% during extreme weather events.</p>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="research-tag">Climate adaptation</span>
+                    <span class="research-tag">Coastal engineering</span>
+                    <span class="research-tag">Resilient design</span>
+                    <span class="research-tag">Nature-based solutions</span>
+                </div>
+                
+                <div class="research-actions">
+                    <a href="#" class="btn btn-primary">Read Full Summary</a>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+            </article>
+            
+            <article class="research-item">
+                <div class="research-header">
+                    <h2 class="research-title">Advanced Earthquake-Resilient Foundation Systems for High-Rise Buildings</h2>
+                    <span class="research-badge">Geotechnical</span>
+                </div>
+                
+                <div class="research-meta">
+                    <span><strong>Authors:</strong> K. Takahashi, L. Wilson, N. Ahmed</span>
+                    <span><strong>Institution:</strong> Stanford University</span>
+                    <span><strong>Year:</strong> 2023</span>
+                </div>
+                
+                <div class="research-summary">
+                    <p>Stanford University researchers have developed innovative foundation systems that significantly improve the seismic performance of high-rise buildings. The research combines advanced computational modeling, physical testing, and field monitoring to create foundation solutions that can dissipate seismic energy and reduce structural damage during major earthquakes.</p>
+                    
+                    <p>The team introduced a novel combined pile-isolation system that incorporates responsive materials and smart damping mechanisms. Shake table tests demonstrate that buildings equipped with this system experience up to 70% less inter-story drift during major seismic events compared to conventional foundation systems. The research provides valuable guidelines for implementing these technologies in new construction and retrofitting existing structures in seismic zones.</p>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="research-tag">Seismic engineering</span>
+                    <span class="research-tag">Foundation design</span>
+                    <span class="research-tag">High-rise buildings</span>
+                    <span class="research-tag">Energy dissipation</span>
+                </div>
+                
+                <div class="research-actions">
+                    <a href="#" class="btn btn-primary">Read Full Summary</a>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+            </article>
+            
+            <article class="research-item">
+                <div class="research-header">
+                    <h2 class="research-title">AI-Enhanced Water Distribution Network Management for Urban Resilience</h2>
+                    <span class="research-badge">Water Resources</span>
+                </div>
+                
+                <div class="research-meta">
+                    <span><strong>Authors:</strong> E. Washington, T. Gupta, F. Johnson</span>
+                    <span><strong>Institution:</strong> University of Texas at Austin</span>
+                    <span><strong>Year:</strong> 2022</span>
+                </div>
+                
+                <div class="research-summary">
+                    <p>Researchers at the University of Texas at Austin have developed an artificial intelligence system that transforms how urban water distribution networks are monitored, managed, and maintained. The AI-based platform integrates data from multiple sources, including pressure sensors, water quality monitors, customer usage patterns, and weather forecasts to optimize system performance and rapidly identify leaks and contamination events.</p>
+                    
+                    <p>Case studies from implementations in three U.S. cities demonstrate that the system reduced water losses from leakage by 32%, shortened response time to pipe failures by 65%, and improved water quality monitoring accuracy by 47%. The research also addresses the integration of these technologies in aging infrastructure systems and provides a scalable framework for implementation in diverse urban contexts.</p>
+                </div>
+                
+                <div class="research-tags">
+                    <span class="research-tag">Artificial intelligence</span>
+                    <span class="research-tag">Water distribution</span>
+                    <span class="research-tag">Smart water systems</span>
+                    <span class="research-tag">Urban infrastructure</span>
+                </div>
+                
+                <div class="research-actions">
+                    <a href="#" class="btn btn-primary">Read Full Summary</a>
+                    <a href="#" class="btn btn-outline">Download PDF</a>
+                </div>
+            </article>
+        </section>
+
+        <div class="pagination">
+            <button class="btn btn-pagination" disabled>Previous</button>
+            <div class="page-numbers">
+                <span class="page-number active">1</span>
+                <span class="page-number">2</span>
+                <span class="page-number">3</span>
+            </div>
+            <button class="btn btn-pagination">Next</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+</body>
+</html>

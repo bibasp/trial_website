@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibas Pokhrel - Nepal Infrastructure</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .circle-img {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: block;
+            border: 3px solid #0078d7;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .circle-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .small-circle-img {
+            border-radius: 50%;
+            object-fit: cover;
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+        }
+        
+        /* Enhanced featured projects styling */
+        .featured-projects-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .featured-projects-heading:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #4a90e2;
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-card.featured {
+            border-left: 4px solid #4a90e2;
+        }
+        
+        .project-card .project-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(74, 144, 226, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-header {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .project-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .project-content {
+            padding: 15px;
+        }
+        
+        .project-description {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #666;
+        }
+        
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .project-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 2px;
+        }
+        
+        .meta-value {
+            color: #777;
+        }
+        
+        .project-footer {
+            padding: 15px;
+            border-top: 1px solid #f0f0f0;
+            text-align: right;
+        }
+        
+        .btn-detail-page {
+            display: inline-block;
+            background-color: #4a90e2;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-detail-page:hover {
+            background-color: #3a7bc8;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        /* Social media links */
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+            border-radius: 50%;
+            color: #333;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .social-link:hover {
+            background-color: #4a90e2;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .social-icon {
+            font-size: 18px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Bibas Pokhrel</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="research.html">Research Summaries</a></li>
+                <li><a href="news.html">What's New</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light theme">
+            <!-- Icon will be added by JavaScript -->
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome</h1>
+            <p>Hi, I am a Civil Engineer (NEC Registered) with interests on different types of infrastructure, their resilience, and connectivity. At present, I am contributing to the digitization in the AEC industry, serving as the GIS Expert in the largest potable water supply distribution project of Nepal. When I'm not working, I love to explore GIS, BIM, programming, and IoT, as I see their potential on transforming the way we operate in the AEC industry. From Spatial Analysis to Computer Vision, I have interests in newer and efficient methods of data collection, data management, data analysis, and help in decision making for infrastructure works.</p>
+            
+            <div class="profile-image">
+                <img src="images/bibas_profile.jpg" alt="Nepal BIM Forum; Conference 2024" class="circle-img profile-photo">
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/erpokhrel" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin-in social-icon"></i>
+                </a>
+                <a href="https://twitter.com/yourprofile" class="social-link" target="_blank">
+                    <i class="fab fa-twitter social-icon"></i>
+                </a>
+                <a href="https://github.com/yourprofile" class="social-link" target="_blank">
+                    <i class="fab fa-github social-icon"></i>
+                </a>
+                <a href="https://www.researchgate.net/profile/yourprofile" class="social-link" target="_blank">
+                    <i class="fab fa-researchgate social-icon"></i>
+                </a>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="projects.html" class="btn btn-primary">Browse Projects</a>
+                <a href="dashboard.html" class="btn btn-secondary">View Dashboard</a>
+            </div>
+        </section>
+
+        <section class="dashboard">
+            <h2>Infrastructure Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Projects</h3>
+                    <div class="stat-number" id="total-projects">31</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>By Category</h3>
+                    <ul id="category-stats">
+                        <li><span>Transportation</span><span>14</span></li>
+                        <li><span>Energy</span><span>5</span></li>
+                        <li><span>Water Infrastructure</span><span>7</span></li>
+                        <li><span>Rural Development</span><span>3</span></li>
+                        <li><span>Tourism</span><span>2</span></li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>By Province</h3>
+                    <ul id="province-stats">
+                        <li><span>Bagmati</span><span>8</span></li>
+                        <li><span>Gandaki</span><span>3</span></li>
+                        <li><span>Multiple Provinces</span><span>12</span></li>
+                        <li><span>Madhesh</span><span>4</span></li>
+                        <li><span>Others</span><span>4</span></li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>By Status</h3>
+                    <ul id="status-stats">
+                        <li><span>Ongoing</span><span>18</span></li>
+                        <li><span>Completed</span><span>4</span></li>
+                        <li><span>Planning phase</span><span>6</span></li>
+                        <li><span>Halted</span><span>1</span></li>
+                        <li><span>Unknown</span><span>2</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="sample-projects">
+            <h2 class="featured-projects-heading">Featured Infrastructure Projects</h2>
+            <div class="projects-grid">
+                <!-- Featured Project 1: Kathmandu-Tarai Expressway -->
+                <div class="project-card featured">
+                    <div class="project-header">
+                        <h3>Kathmandu-Tarai Expressway</h3>
+                        <span class="project-status status-ongoing">Ongoing</span>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Nepal's first expressway connecting Kathmandu to the Tarai region. This 70.977 km project includes bridges spanning 12.885 km and tunnels totaling 10.055 km.</p>
+                        
+                        <div class="project-meta">
+                            <div class="project-meta-item">
+                                <span class="meta-label">Budget</span>
+                                <span class="meta-value">Rs 213 billion</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Agency</span>
+                                <span class="meta-value">Nepal Army</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Target Completion</span>
+                                <span class="meta-value">April 2027</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Category</span>
+                                <span class="meta-value">National Pride</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-label">
+                            <span>Project Progress</span>
+                            <span>37%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 37%"></div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="pages/kathmandu-tarai-expressway.html" class="btn-detail-page">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Featured Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Upper Tamakoshi Hydroelectric Project</h3>
+                        <span class="project-status status-complete">Operational</span>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Nepal's largest hydropower project with 456 MW capacity, completed using domestic financial resources.</p>
+                        
+                        <div class="project-meta">
+                            <div class="project-meta-item">
+                                <span class="meta-label">Budget</span>
+                                <span class="meta-value">Rs 73 billion</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Capacity</span>
+                                <span class="meta-value">456 MW</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Type</span>
+                                <span class="meta-value">Run-of-the-river</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Location</span>
+                                <span class="meta-value">Dolakha</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-label">
+                            <span>Project Progress</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="project-detail.html?id=EN-HP-001" class="btn-detail-page">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Featured Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Melamchi Water Supply Project</h3>
+                        <span class="project-status status-partially">Partially Operational</span>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Major drinking water project to address Kathmandu Valley's water shortage, delivering water from the Melamchi River.</p>
+                        
+                        <div class="project-meta">
+                            <div class="project-meta-item">
+                                <span class="meta-label">Status</span>
+                                <span class="meta-value">Phase 1 Complete</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Capacity</span>
+                                <span class="meta-value">170 MLD</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Tunnel Length</span>
+                                <span class="meta-value">26.5 km</span>
+                            </div>
+                            <div class="project-meta-item">
+                                <span class="meta-label">Category</span>
+                                <span class="meta-value">National Pride</span>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-label">
+                            <span>Phase 1 Progress</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="project-detail.html?id=WA-DW-001" class="btn-detail-page">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="projects.html" class="btn btn-outline">View All Infrastructure Projects</a>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container">
+          
+              <div class="section-title">
+                <h2>Projects</h2>
+                <p>Our infrastructure projects</p>
+              </div>
+          
+              <!-- This is the container that will be populated with projects from CSV -->
+              <div class="row portfolio-container">
+                <!-- Projects will be dynamically inserted here -->
+              </div>
+          
+            </div>
+          </section>
+          
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bibas Pokhrel. All rights reserved.</p>
+    </footer>
+
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/project-data.js"></script>
+    <script src="js/project-router.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
